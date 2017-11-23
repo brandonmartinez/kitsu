@@ -1,4 +1,4 @@
-import Kitsu from '../lib/kitsu'
+import Kitsu from '../src'
 
 const api = new Kitsu()
 
@@ -15,19 +15,13 @@ const api = new Kitsu()
  * - Sword Art Online
  * - Death Note
  */
-const showPopular = async () => {
+const print = async () => {
   try {
-    const { data } = await api.get('anime', {
-      page: { limit: 5 },
-      sort: 'popularityRank'
-    })
-    console.log('\nTop 5 popular anime:')
-    data.forEach(anime => {
-      console.log(`- ${anime.canonicalTitle}`)
-    })
+    const { data } = await api.get('users/42603/waifu')
+    console.log(data)
   } catch (err) {
     console.log(err)
   }
 }
 
-showPopular()
+print()

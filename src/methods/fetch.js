@@ -1,5 +1,23 @@
 import kebab from 'decamelize'
+import { error } from '../util/error'
+import { agent } from '../util/agent'
+
+export default async function (model, params = {}, headers = {}) {
+  try {
+    console.log(model.split('/'))
+    const { data } = await agent('get', `/${model}`)
+    return data
+  } catch (e) {
+    return error(e)
+  }
+}
+
+
+
+/*
+import kebab from 'decamelize'
 import { deserialise, error, query } from '../util'
+*/
 
 /**
  * Fetch resources
@@ -51,6 +69,8 @@ import { deserialise, error, query } from '../util'
  * // Get a resource's relationship data only
  * api.get('anime/2/categories')
  */
+
+/*
 export default async function (model, params = {}, headers = {}) {
   try {
     let { data } = await this.axios.get(kebab(model), {
@@ -63,3 +83,4 @@ export default async function (model, params = {}, headers = {}) {
     return error(E)
   }
 }
+*/
